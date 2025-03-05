@@ -1,0 +1,12 @@
+# Foldery binarne
+bin/
+obj/
+
+# Pliki konfiguracji VS
+.vs/
+*.suo
+*.user
+
+# Pliki tymczasowe
+*.log
+*.tmp
