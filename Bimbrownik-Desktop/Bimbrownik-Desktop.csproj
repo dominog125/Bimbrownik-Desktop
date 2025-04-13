@@ -9,4 +9,20 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Page Remove="Resources\Strings.en.xaml" />
+    <Page Remove="Resources\Strings.pl.xaml" />
+  </ItemGroup>
+
+	<ItemGroup>
+		<Resource Include="Images\flag_us.png" />
+		<Resource Include="Images\flag_pl.png" />
+		<Resource Include="Resources\Strings.en.xaml">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Resources\Strings.pl.xaml">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+	</ItemGroup>
+
 </Project>
