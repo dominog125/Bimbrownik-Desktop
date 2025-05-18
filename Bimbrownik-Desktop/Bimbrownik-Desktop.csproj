@@ -26,8 +26,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Folder Include="Data\Offline\" />
 	  <Folder Include="Layouts\Themes\" />
 	  <Folder Include="Styles\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="Data\Offline\recipes.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
 	</ItemGroup>
 
 </Project>

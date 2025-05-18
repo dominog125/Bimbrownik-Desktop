@@ -1,0 +1,26 @@
+[
+    {
+        "Id": 1,
+        "Name": "Nalewka malinowa",
+        "Ingredients": "Maliny, cukier, spirytus",
+        "Instructions": "Zalej maliny spirytusem, odstaw na 2 tygodnie...",
+        "CreatedAt": "2025-05-18T12:00:00",
+        "IsHighlighted": true
+    },
+    {
+        "Id": 2,
+        "Name": "Likier kawowy",
+        "Ingredients": "Kawa rozpuszczalna, mleko skondensowane, spirytus",
+        "Instructions": "Wymieszaj składniki, odstaw na 3 dni...",
+        "CreatedAt": "2025-05-17T10:30:00",
+        "IsHighlighted": false
+    },
+    {
+        "Id": 3,
+        "Name": "Bimber jabłkowy",
+        "Ingredients": "Jabłka, drożdże, cukier",
+        "Instructions": "Fermentuj przez 7 dni, potem destyluj.",
+        "CreatedAt": "2025-05-16T09:15:00",
+        "IsHighlighted": false
+    }
+]

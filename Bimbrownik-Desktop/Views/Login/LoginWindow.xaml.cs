@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 using Bimbrownik_Desktop.Services;
-using Bimbrownik_Desktop.Views;          // ← dodaj, żeby widzieć MainWindow
+using Bimbrownik_Desktop.Views;
 
 namespace Bimbrownik_Desktop.Views.Login
 {

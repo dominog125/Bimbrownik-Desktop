@@ -1,0 +1,54 @@
+﻿<Window x:Class="Bimbrownik_Desktop.Views.Recipes.EditRecipeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="{DynamicResource EditRecipeTitle}"
+        Height="400" Width="500"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize">
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <CheckBox x:Name="HighlightCheck"
+                  Content="{DynamicResource Highlight}"
+                  Margin="0,0,0,10"/>
+
+        <TextBox x:Name="NameBox"
+                 Grid.Row="1"
+                 Height="30"
+                 Margin="0,0,0,10"
+                 VerticalAlignment="Top"/>
+
+        <StackPanel Grid.Row="2" Margin="0,0,0,10">
+            <TextBlock Text="{DynamicResource Ingredients}"
+                       FontWeight="Bold"/>
+            <TextBox x:Name="IngredientsBox"
+                     Height="30"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="3" Margin="0,0,0,10">
+            <TextBlock Text="{DynamicResource Instructions}"
+                       FontWeight="Bold"/>
+            <TextBox x:Name="InstructionsBox"
+                     Height="100"
+                     AcceptsReturn="True"
+                     TextWrapping="Wrap"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="{DynamicResource Save}"
+                    Width="100" Height="40"
+                    Margin="0,0,10,0"
+                    Click="Save_Click"/>
+            <Button Content="{DynamicResource Cancel}"
+                    Width="100" Height="40"
+                    Click="Cancel_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

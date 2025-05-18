@@ -1,9 +1,9 @@
 ﻿using System.Windows.Controls;
 using System.Windows;
 
-namespace Bimbrownik_Desktop.Layouts   // ← dokładnie tak!
+namespace Bimbrownik_Desktop.Layouts
 {
-    public class BaseLayout : ContentControl   // ← public
+    public class BaseLayout : ContentControl
     {
         static BaseLayout()
         {

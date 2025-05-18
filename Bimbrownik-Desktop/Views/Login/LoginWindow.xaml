@@ -10,7 +10,6 @@
     <DockPanel Background="White">
 
         <Border Background="#D0D0D0" Height="60" Padding="10" DockPanel.Dock="Top">
-            <!-- ▼ klucz – flaga NIE wypełnia całej szerokości -->
             <DockPanel LastChildFill="False">
 
                 <TextBlock Text="{DynamicResource LoginTitle}"
@@ -23,7 +22,6 @@
             </DockPanel>
         </Border>
 
-        <!-- ► formularz -->
         <StackPanel VerticalAlignment="Center"
                     HorizontalAlignment="Center"
                     Width="300">

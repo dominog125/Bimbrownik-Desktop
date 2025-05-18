@@ -4,9 +4,7 @@
              xmlns:controls="clr-namespace:Bimbrownik_Desktop.Controls">
 
     <DockPanel Background="White">
-        <!-- nagłówek -->
         <Border Background="#D0D0D0" Height="60" Padding="10" DockPanel.Dock="Top">
-            <!-- ▼ klucz – flaga NIE wypełnia całej szerokości -->
             <DockPanel LastChildFill="False">
 
                 <TextBlock Text="{DynamicResource MainMenuTitle}"
@@ -19,7 +17,6 @@
             </DockPanel>
         </Border>
 
-        <!-- przyciski -->
         <StackPanel VerticalAlignment="Center"
                     HorizontalAlignment="Center"
                     Margin="0,40"

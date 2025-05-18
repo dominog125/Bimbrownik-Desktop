@@ -7,6 +7,7 @@
     <sys:String x:Key="Username">Użytkownik</sys:String>
     <sys:String x:Key="Password">Hasło</sys:String>
     <sys:String x:Key="LoginButton">Zaloguj</sys:String>
+    
 
     <sys:String x:Key="MainMenuTitle">Menu Główne</sys:String>
     <sys:String x:Key="Recipes">Przepisy</sys:String>
@@ -14,4 +15,15 @@
     <sys:String x:Key="Notifications">Powiadomienia</sys:String>
     <sys:String x:Key="Statistics">Statystyki systemowe</sys:String>
     <sys:String x:Key="Logout">Wyloguj się</sys:String>
+    
+
+    <sys:String x:Key="RecipeTitle">Przepisy</sys:String>
+    <sys:String x:Key="AddRecipe">Dodaj przepis</sys:String>
+    <sys:String x:Key="EditRecipe">Edytuj przepis</sys:String>
+    <sys:String x:Key="RecipeName">Nazwa</sys:String>
+    <sys:String x:Key="Ingredients">Składniki</sys:String>
+    <sys:String x:Key="Instructions">Instrukcje</sys:String>
+    <sys:String x:Key="Highlighted">Wyróżniony</sys:String>
+    <sys:String x:Key="Save">Zapisz</sys:String>
+    <sys:String x:Key="Cancel">Anuluj</sys:String>
 </ResourceDictionary>
