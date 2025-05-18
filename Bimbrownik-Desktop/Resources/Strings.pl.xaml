@@ -2,8 +2,16 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
-  <sys:String x:Key="LoginTitle">Logowanie</sys:String>
-  <sys:String x:Key="Username">Użytkownik</sys:String>
-  <sys:String x:Key="Password">Hasło</sys:String>
-  <sys:String x:Key="LoginButton">Zaloguj</sys:String>
+  
+    <sys:String x:Key="LoginTitle">Logowanie</sys:String>
+    <sys:String x:Key="Username">Użytkownik</sys:String>
+    <sys:String x:Key="Password">Hasło</sys:String>
+    <sys:String x:Key="LoginButton">Zaloguj</sys:String>
+
+    <sys:String x:Key="MainMenuTitle">Menu Główne</sys:String>
+    <sys:String x:Key="Recipes">Przepisy</sys:String>
+    <sys:String x:Key="Categories">Kategorie napojów</sys:String>
+    <sys:String x:Key="Notifications">Powiadomienia</sys:String>
+    <sys:String x:Key="Statistics">Statystyki systemowe</sys:String>
+    <sys:String x:Key="Logout">Wyloguj się</sys:String>
 </ResourceDictionary>

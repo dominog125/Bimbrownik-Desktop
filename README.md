@@ -22,5 +22,5 @@
 | DRUNK-12 | Administrator może wysyłać powiadomienia o nowych przepisach lub promocjach. | ❌      |
 | DRUNK-13 | Administrator widzi statystyki systemowe (np. najczęściej oglądane przepisy, aktywność użytkowników). | ❌      |
 | DRUNK-22 | Użytkownik może publikować swoje przepisy dla innych.       | ❌      |
-| DRUNK-26 | Użytkownik może się wylogować.                              | ❌      |
+| DRUNK-26 | Użytkownik może się wylogować.                              | ⏳      |
 | DRUNK-27 | System obsługuje język polski i angielski.                  | ⏳      |

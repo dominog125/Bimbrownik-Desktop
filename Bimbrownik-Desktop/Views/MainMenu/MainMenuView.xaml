@@ -1,0 +1,44 @@
+﻿<UserControl x:Class="Bimbrownik_Desktop.Views.MainMenu.MainMenuView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:controls="clr-namespace:Bimbrownik_Desktop.Controls">
+
+    <DockPanel Background="White">
+        <!-- nagłówek -->
+        <Border Background="#D0D0D0" Height="60" Padding="10" DockPanel.Dock="Top">
+            <!-- ▼ klucz – flaga NIE wypełnia całej szerokości -->
+            <DockPanel LastChildFill="False">
+
+                <TextBlock Text="{DynamicResource MainMenuTitle}"
+                   FontSize="26" FontWeight="Bold"
+                   VerticalAlignment="Center"
+                   DockPanel.Dock="Left"/>
+
+                <controls:LanguageToggle DockPanel.Dock="Right"
+                                 Width="32" Height="32"/>
+            </DockPanel>
+        </Border>
+
+        <!-- przyciski -->
+        <StackPanel VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Margin="0,40"
+                    Width="300">
+
+            <Button Content="{DynamicResource Recipes}"
+        Click="Recipes_Click" Height="40" Margin="0,0,0,10"/>
+
+            <Button Content="{DynamicResource Categories}"
+        Click="Categories_Click" Height="40" Margin="0,0,0,10"/>
+
+            <Button Content="{DynamicResource Notifications}"
+        Click="Notifications_Click" Height="40" Margin="0,0,0,10"/>
+
+            <Button Content="{DynamicResource Statistics}"
+        Click="Statistics_Click" Height="40" Margin="0,0,0,10"/>
+
+            <Button Content="{DynamicResource Logout}"
+        Click="Logout_Click" Height="40"/>
+        </StackPanel>
+    </DockPanel>
+</UserControl>

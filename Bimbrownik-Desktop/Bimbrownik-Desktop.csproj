@@ -25,4 +25,9 @@
 		</Resource>
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Layouts\Themes\" />
+	  <Folder Include="Styles\" />
+	</ItemGroup>
+
 </Project>
