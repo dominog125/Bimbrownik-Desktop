@@ -16,7 +16,7 @@
 | DRUNK-03 | System posiada ujednolicony design we wszystkich platformach, zapewniając spójne doświadczenie użytkownika. | ❌      |
 | DRUNK-07 | Administrator może zalogować się w systemie.                | ⏳      |
 | DRUNK-08 | Administrator może dodawać przepisy na alkohole do bazy danych. | ⏳      |
-| DRUNK-09 | Administrator może dodawać kategorie napojów (np. wódki, likiery, nalewki, koktajle). | ❌      |
+| DRUNK-09 | Administrator może dodawać kategorie napojów (np. wódki, likiery, nalewki, koktajle). | ⏳      |
 | DRUNK-10 | Administrator może edytować i usuwać przepisy.              | ⏳      |
 | DRUNK-11 | Administrator może wyróżniać wybrane przepisy.              | ⏳      |
 | DRUNK-12 | Administrator może wysyłać powiadomienia o nowych przepisach lub promocjach. | ❌      |
