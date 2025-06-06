@@ -1,0 +1,17 @@
+[
+    {
+        "Id": 1,
+        "Message": "Dodano nowy przepis: Nalewka malinowa!",
+        "CreatedAt": "2025-06-05T13:45:00"
+    },
+    {
+        "Id": 2,
+        "Message": "Promocja: -10% na składniki do bimbru jabłkowego!",
+        "CreatedAt": "2025-06-04T09:30:00"
+    },
+    {
+        "Id": 3,
+        "Message": "Nowa kategoria: Koktajle",
+        "CreatedAt": "2025-06-03T17:15:00"
+    }
+]

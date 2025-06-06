@@ -34,6 +34,9 @@
 	  <None Update="Data\Offline\categories.json">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
+	  <None Update="Data\Offline\notifications.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
 	  <None Update="Data\Offline\recipes.json">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>

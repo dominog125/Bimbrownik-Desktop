@@ -22,7 +22,9 @@
 
     <sys:String x:Key="CategoryTitle">Kategorie napojów</sys:String>
     <sys:String x:Key="AddCategory">Dodaj kategorię</sys:String>
-    
+    <sys:String x:Key="AddCategoryTitle">Dodaj kategorię</sys:String>
+    <sys:String x:Key="CategoryName">Nazwa kategorii</sys:String>
+
 
     <sys:String x:Key="EditRecipe">Edytuj przepis</sys:String>
     <sys:String x:Key="RecipeName">Nazwa</sys:String>
@@ -30,9 +32,11 @@
     <sys:String x:Key="Instructions">Instrukcje</sys:String>
     <sys:String x:Key="Highlighted">Wyróżniony</sys:String>
 
-    
-    <sys:String x:Key="AddCategoryTitle">Dodaj kategorię</sys:String>
-    <sys:String x:Key="CategoryName">Nazwa kategorii</sys:String>
+
+    <sys:String x:Key="NotificationsTitle">Powiadomienia</sys:String>
+    <sys:String x:Key="AddNotification">Dodaj powiadomienie</sys:String>
+    <sys:String x:Key="AddNotificationTitle">Nowe powiadomienie</sys:String>
+    <sys:String x:Key="NotificationMessage">Treść powiadomienia</sys:String>
 
 
     <sys:String x:Key="Save">Zapisz</sys:String>
