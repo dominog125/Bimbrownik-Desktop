@@ -38,6 +38,14 @@
     <sys:String x:Key="NotificationMessage">Notification Message</sys:String>
 
 
+    <sys:String x:Key="StatisticsTitle">Statistics</sys:String>
+    <sys:String x:Key="TotalRecipes">Total recipes</sys:String>
+    <sys:String x:Key="TotalCategories">Total categories</sys:String>
+    <sys:String x:Key="RecipesViewedToday">Recipes viewed today</sys:String>
+    <sys:String x:Key="LastViewedRecipe">Last viewed recipe</sys:String>
+    <sys:String x:Key="TopViewedRecipes">Top 3 most viewed recipes</sys:String>
+
+
     <sys:String x:Key="Save">Save</sys:String>
     <sys:String x:Key="Cancel">Cancel</sys:String>
 

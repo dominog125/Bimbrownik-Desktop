@@ -4,6 +4,7 @@ using Bimbrownik_Desktop.Services;
 using Bimbrownik_Desktop.Views.Categories;
 using Bimbrownik_Desktop.Views.Notifications;
 using Bimbrownik_Desktop.Views.Recipes;
+using Bimbrownik_Desktop.Views.Statistics;
 
 namespace Bimbrownik_Desktop.Views.MainMenu;
 
@@ -23,7 +24,10 @@ public partial class MainMenuView : UserControl
     {
         NavigationService.Instance.NavigateTo(new NotificationsView());
     }
-    private void Statistics_Click(object sender, RoutedEventArgs e) => MessageBox.Show("Statystyki");
+    private void Statistics_Click(object sender, RoutedEventArgs e)
+    {
+        NavigationService.Instance.NavigateTo(new StatisticsView());
+    }
 
     private void Logout_Click(object sender, RoutedEventArgs e)
     {

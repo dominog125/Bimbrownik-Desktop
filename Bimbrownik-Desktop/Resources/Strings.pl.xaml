@@ -38,6 +38,14 @@
     <sys:String x:Key="AddNotificationTitle">Nowe powiadomienie</sys:String>
     <sys:String x:Key="NotificationMessage">Treść powiadomienia</sys:String>
 
+    
+    <sys:String x:Key="StatisticsTitle">Statystyki</sys:String>
+    <sys:String x:Key="TotalRecipes">Liczba przepisów</sys:String>
+    <sys:String x:Key="TotalCategories">Liczba kategorii</sys:String>
+    <sys:String x:Key="RecipesViewedToday">Przepisy przeglądane dzisiaj</sys:String>
+    <sys:String x:Key="LastViewedRecipe">Ostatnio przeglądany przepis</sys:String>
+    <sys:String x:Key="TopViewedRecipes">Top 3 najczęściej oglądane przepisy</sys:String>
+
 
     <sys:String x:Key="Save">Zapisz</sys:String>
     <sys:String x:Key="Cancel">Anuluj</sys:String>

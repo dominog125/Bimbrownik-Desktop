@@ -7,6 +7,8 @@
         public string Ingredients { get; set; } = "";
         public string Instructions { get; set; } = "";
         public DateTime CreatedAt { get; set; }
-        public bool IsHighlighted { get; set; }
+        public bool IsHighlighted { get; set; } 
+        public int ViewCount { get; set; }
+        public DateTime? LastViewedAt { get; set; }
     }
 }
