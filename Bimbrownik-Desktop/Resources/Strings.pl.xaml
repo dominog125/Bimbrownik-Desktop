@@ -20,17 +20,18 @@
     <sys:String x:Key="RecipeTitle">Przepisy</sys:String>
     <sys:String x:Key="AddRecipe">Dodaj przepis</sys:String>
 
-    <sys:String x:Key="CategoryTitle">Kategorie napojów</sys:String>
-    <sys:String x:Key="AddCategory">Dodaj kategorię</sys:String>
-    <sys:String x:Key="AddCategoryTitle">Dodaj kategorię</sys:String>
-    <sys:String x:Key="CategoryName">Nazwa kategorii</sys:String>
-
 
     <sys:String x:Key="EditRecipe">Edytuj przepis</sys:String>
     <sys:String x:Key="RecipeName">Nazwa</sys:String>
     <sys:String x:Key="Ingredients">Składniki</sys:String>
     <sys:String x:Key="Instructions">Instrukcje</sys:String>
     <sys:String x:Key="Highlighted">Wyróżniony</sys:String>
+    
+
+    <sys:String x:Key="CategoryTitle">Kategorie napojów</sys:String>
+    <sys:String x:Key="AddCategory">Dodaj kategorię</sys:String>
+    <sys:String x:Key="AddCategoryTitle">Dodaj kategorię</sys:String>
+    <sys:String x:Key="CategoryName">Nazwa kategorii</sys:String>
 
 
     <sys:String x:Key="NotificationsTitle">Powiadomienia</sys:String>

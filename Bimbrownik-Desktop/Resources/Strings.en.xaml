@@ -19,18 +19,19 @@
     <sys:String x:Key="RecipeTitle">Recipe</sys:String>
     <sys:String x:Key="AddRecipe">Add Recipe</sys:String>
 
-    
-    <sys:String x:Key="CategoryTitle">Category</sys:String>
-    <sys:String x:Key="AddCategory">Add Category</sys:String>
-    <sys:String x:Key="AddCategoryTitle">Add Category</sys:String>
-    <sys:String x:Key="CategoryName">Category Name</sys:String>
-    
+
     <sys:String x:Key="EditRecipe">Edit Recipe</sys:String>
     <sys:String x:Key="RecipeName">Name</sys:String>
     <sys:String x:Key="Ingredients">Ingredients</sys:String>
     <sys:String x:Key="Instructions">Instructions</sys:String>
     <sys:String x:Key="Highlighted">Highlighted</sys:String>
 
+
+    <sys:String x:Key="CategoryTitle">Category</sys:String>
+    <sys:String x:Key="AddCategory">Add Category</sys:String>
+    <sys:String x:Key="AddCategoryTitle">Add Category</sys:String>
+    <sys:String x:Key="CategoryName">Category Name</sys:String>
+    
 
     <sys:String x:Key="NotificationsTitle">Notifications</sys:String>
     <sys:String x:Key="AddNotification">Add Notification</sys:String>

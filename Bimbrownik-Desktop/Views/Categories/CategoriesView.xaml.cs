@@ -2,8 +2,6 @@
 using System.Windows.Controls;
 using Bimbrownik_Desktop.Models;
 using Bimbrownik_Desktop.Services;
-using Bimbrownik_Desktop.Views.Categories;
-using System.Collections.Generic;
 
 namespace Bimbrownik_Desktop.Views.Categories
 {

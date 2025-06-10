@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 using Bimbrownik_Desktop.Services;
-using Bimbrownik_Desktop.Views;
+using Bimbrownik_Desktop.Views.Main;
 
 namespace Bimbrownik_Desktop.Views.Login
 {
@@ -8,15 +8,20 @@ namespace Bimbrownik_Desktop.Views.Login
     {
         private readonly FakeAuthenticationService _auth = new();
 
-        public LoginWindow() => InitializeComponent();
+        public LoginWindow()
+        {
+            InitializeComponent();
+        }
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
             if (_auth.Login(UsernameBox.Text, PasswordBox.Password))
             {
-                // otwieramy główne okno z ContentArea
-                new MainWindow().Show();
-                Close();
+                var mainWindow = new MainWindow();
+                mainWindow.Show();
+
+                Application.Current.MainWindow = mainWindow;
+                this.Close();
             }
             else
             {

@@ -13,7 +13,7 @@
 |----------|-------------------------------------------------------------|--------|
 | DRUNK-01 | System posiada połączenie z centralnym API, umożliwiające integrację z zewnętrznymi usługami i bazami danych. | ❌      |
 | DRUNK-03 | Aplikacja obsługuje tryb offline, umożliwiając dostęp do zapisanych przepisów bez połączenia z internetem. | ⏳      |
-| DRUNK-03 | System posiada ujednolicony design we wszystkich platformach, zapewniając spójne doświadczenie użytkownika. | ❌      |
+| DRUNK-05 | System posiada ujednolicony design we wszystkich platformach, zapewniając spójne doświadczenie użytkownika. | ✅      |
 | DRUNK-07 | Administrator może zalogować się w systemie.                | ⏳      |
 | DRUNK-08 | Administrator może dodawać przepisy na alkohole do bazy danych. | ⏳      |
 | DRUNK-09 | Administrator może dodawać kategorie napojów (np. wódki, likiery, nalewki, koktajle). | ⏳      |

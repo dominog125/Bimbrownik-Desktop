@@ -11,12 +11,19 @@ public enum LanguageCode
 public interface LanguageService
 {
     void SetLanguage(LanguageCode language);
+    LanguageCode CurrentLanguage { get; }
 }
 
 public class ResourceLanguageService : LanguageService
 {
+    private LanguageCode _currentLanguage = LanguageCode.English;
+
+    public LanguageCode CurrentLanguage => _currentLanguage;
+
     public void SetLanguage(LanguageCode language)
     {
+        _currentLanguage = language;
+
         var dict = new ResourceDictionary
         {
             Source = new Uri(GetDictionaryPath(language), UriKind.Relative)
@@ -31,7 +38,7 @@ public class ResourceLanguageService : LanguageService
         Application.Current.Resources.MergedDictionaries.Add(dict);
     }
 
-    public string GetDictionaryPath(LanguageCode language)
+    private string GetDictionaryPath(LanguageCode language)
     {
         return language == LanguageCode.Polish
             ? "Resources/Strings.pl.xaml"

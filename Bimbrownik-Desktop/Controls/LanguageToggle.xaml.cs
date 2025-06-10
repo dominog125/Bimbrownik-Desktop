@@ -7,26 +7,28 @@ namespace Bimbrownik_Desktop.Controls
 {
     public partial class LanguageToggle : UserControl
     {
-        private readonly LanguageService languageService = new ResourceLanguageService();
-        private LanguageCode currentLanguage = LanguageCode.English;
+        private static readonly ResourceLanguageService languageService = new();
 
         public LanguageToggle()
         {
             InitializeComponent();
-            languageService.SetLanguage(currentLanguage);
             UpdateFlag();
         }
 
         private void FlagImage_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            currentLanguage = currentLanguage == LanguageCode.English ? LanguageCode.Polish : LanguageCode.English;
-            languageService.SetLanguage(currentLanguage);
+            var current = languageService.CurrentLanguage;
+            var next = current == LanguageCode.English ? LanguageCode.Polish : LanguageCode.English;
+
+            languageService.SetLanguage(next);
             UpdateFlag();
         }
 
         private void UpdateFlag()
         {
-            var imagePath = currentLanguage == LanguageCode.English
+            var current = languageService.CurrentLanguage;
+
+            var imagePath = current == LanguageCode.English
                 ? "pack://application:,,,/Images/flag_us.png"
                 : "pack://application:,,,/Images/flag_pl.png";
 

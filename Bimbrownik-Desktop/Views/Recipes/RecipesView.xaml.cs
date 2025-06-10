@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using Bimbrownik_Desktop.Models;
 using Bimbrownik_Desktop.Services;
-using System;
+using Bimbrownik_Desktop.ViewModels.Recipes;
 
 namespace Bimbrownik_Desktop.Views.Recipes
 {
@@ -23,55 +23,16 @@ namespace Bimbrownik_Desktop.Views.Recipes
             var recipes = _service.LoadRecipes();
             foreach (var recipe in recipes)
             {
-                var block = new TextBlock
+                var item = new RecipeItemView
                 {
-                    Text = $"{recipe.Name}\n{recipe.Ingredients}\n{recipe.Instructions}\n{recipe.CreatedAt:yyyy-MM-dd HH:mm}",
-                    TextWrapping = TextWrapping.Wrap,
-                    Margin = new Thickness(0, 0, 0, 10),
-                    FontWeight = recipe.IsHighlighted ? FontWeights.Bold : FontWeights.Normal
+                    DataContext = new RecipeItemViewModel(recipe)
                 };
 
-                var editButton = new Button
-                {
-                    Content = "✏️",
-                    Width = 32,
-                    Height = 32,
-                    Margin = new Thickness(4)
-                };
-                editButton.Click += (s, e) => EditRecipe(recipe);
+                item.EditRequested += EditRecipe;
+                item.DeleteRequested += DeleteRecipe;
+                item.HighlightToggled += ToggleHighlight;
 
-                var deleteButton = new Button
-                {
-                    Content = "🗑️",
-                    Width = 32,
-                    Height = 32,
-                    Margin = new Thickness(4)
-                };
-                deleteButton.Click += (s, e) => DeleteRecipe(recipe);
-
-                var starButton = new Button
-                {
-                    Content = recipe.IsHighlighted ? "⭐" : "☆",
-                    Width = 32,
-                    Height = 32,
-                    Margin = new Thickness(4)
-                };
-                starButton.Click += (s, e) => ToggleHighlight(recipe);
-
-                var buttons = new StackPanel
-                {
-                    Orientation = Orientation.Horizontal,
-                    Margin = new Thickness(10, 0, 0, 10)
-                };
-                buttons.Children.Add(editButton);
-                buttons.Children.Add(deleteButton);
-                buttons.Children.Add(starButton);
-
-                var wrapper = new StackPanel();
-                wrapper.Children.Add(block);
-                wrapper.Children.Add(buttons);
-
-                RecipeList.Children.Add(wrapper);
+                RecipeList.Children.Add(item);
             }
         }
 
@@ -80,20 +41,25 @@ namespace Bimbrownik_Desktop.Views.Recipes
             var newRecipe = new Recipe
             {
                 Id = Guid.NewGuid().GetHashCode(),
-                Name = "Nowy przepis",
+                Name = "",
                 Ingredients = "",
                 Instructions = "",
                 CreatedAt = DateTime.Now,
                 IsHighlighted = false
             };
 
-            var all = _service.LoadRecipes();
-            all.Add(newRecipe);
-            _service.SaveAllRecipes(all);
-            LoadRecipes();
+            var dialog = new EditRecipeWindow(newRecipe);
+
+            if (dialog.ShowDialog() == true)
+            {
+                var all = _service.LoadRecipes();
+                all.Add(dialog.Recipe);
+                _service.SaveAllRecipes(all);
+                LoadRecipes();
+            }
         }
 
-        private void DeleteRecipe(Recipe recipe)
+        private void DeleteRecipe(object? sender, Recipe recipe)
         {
             var all = _service.LoadRecipes();
             all.RemoveAll(r => r.Id == recipe.Id);
@@ -101,7 +67,7 @@ namespace Bimbrownik_Desktop.Views.Recipes
             LoadRecipes();
         }
 
-        private void EditRecipe(Recipe recipe)
+        private void EditRecipe(object? sender, Recipe recipe)
         {
             var dialog = new EditRecipeWindow(recipe);
             if (dialog.ShowDialog() == true)
@@ -118,7 +84,8 @@ namespace Bimbrownik_Desktop.Views.Recipes
                 }
             }
         }
-        private void ToggleHighlight(Recipe recipe)
+
+        private void ToggleHighlight(object? sender, Recipe recipe)
         {
             var all = _service.LoadRecipes();
             var found = all.Find(r => r.Id == recipe.Id);
@@ -131,5 +98,3 @@ namespace Bimbrownik_Desktop.Views.Recipes
         }
     }
 }
-
-    

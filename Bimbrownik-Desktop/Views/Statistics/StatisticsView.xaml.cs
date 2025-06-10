@@ -1,7 +1,5 @@
-﻿using System;
-using System.Linq;
-using System.Windows.Controls;
-using Bimbrownik_Desktop.Models;
+﻿using System.Windows.Controls;
+using System.Windows;
 using Bimbrownik_Desktop.Services;
 
 namespace Bimbrownik_Desktop.Views.Statistics;
@@ -36,7 +34,7 @@ public partial class StatisticsView : UserControl
 
         LastViewedText.Text = lastViewed != null
             ? $"{lastViewed.Name} ({lastViewed.LastViewedAt:yyyy-MM-dd HH:mm})"
-            : "-";
+            : "Brak danych";
 
         var topViewed = recipes
             .OrderByDescending(r => r.ViewCount)
@@ -44,12 +42,24 @@ public partial class StatisticsView : UserControl
             .ToList();
 
         TopViewedList.Children.Clear();
+
+        if (topViewed.Count == 0)
+        {
+            TopViewedList.Children.Add(new TextBlock
+            {
+                Text = "Brak danych",
+                Foreground = (System.Windows.Media.Brush)Application.Current.Resources["TextWhite"]
+            });
+            return;
+        }
+
         foreach (var recipe in topViewed)
         {
             TopViewedList.Children.Add(new TextBlock
             {
                 Text = $"{recipe.Name} ({recipe.ViewCount} wyświetleń)",
-                Margin = new System.Windows.Thickness(0, 0, 0, 5)
+                Margin = new Thickness(0, 0, 0, 5),
+                Foreground = (System.Windows.Media.Brush)Application.Current.Resources["TextWhite"]
             });
         }
     }

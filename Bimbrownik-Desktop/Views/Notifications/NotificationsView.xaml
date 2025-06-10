@@ -1,31 +1,32 @@
 ﻿<UserControl x:Class="Bimbrownik_Desktop.Views.Notifications.NotificationsView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:layout="clr-namespace:Bimbrownik_Desktop.Views.Layouts"
              xmlns:controls="clr-namespace:Bimbrownik_Desktop.Controls">
-    <DockPanel Background="White">
 
-        <Border Background="#D0D0D0" Height="60" Padding="10" DockPanel.Dock="Top">
-            <DockPanel LastChildFill="False">
-                <TextBlock Text="{DynamicResource NotificationsTitle}"
-                           FontSize="26" FontWeight="Bold"
-                           VerticalAlignment="Center"
-                           DockPanel.Dock="Left"/>
-                <controls:LanguageToggle Width="32" Height="32"
-                                         VerticalAlignment="Center"
-                                         DockPanel.Dock="Right"/>
-            </DockPanel>
-        </Border>
+    <DockPanel Background="{StaticResource DarkBackground}">
 
-        <StackPanel Margin="20">
+        <layout:SectionHeader HeaderText="{DynamicResource NotificationsTitle}" DockPanel.Dock="Top"/>
+        
+        <layout:BackToMenuArrow DockPanel.Dock="Top"/>
+
+        <Grid Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
             <Button Content="{DynamicResource AddNotification}"
-                    Width="200" Height="40"
+                    Style="{StaticResource MenuButtonStyle}"
                     HorizontalAlignment="Center"
                     Click="AddNotification_Click"
+                    Grid.Row="0"
                     Margin="0,0,0,20"/>
 
-            <ScrollViewer VerticalScrollBarVisibility="Auto">
-                <StackPanel x:Name="NotificationList" />
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                <StackPanel x:Name="NotificationList"/>
             </ScrollViewer>
-        </StackPanel>
+        </Grid>
+
     </DockPanel>
 </UserControl>

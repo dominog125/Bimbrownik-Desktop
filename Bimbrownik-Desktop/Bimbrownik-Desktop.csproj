@@ -26,11 +26,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Layouts\Themes\" />
-	  <Folder Include="Styles\" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <None Update="Data\Offline\categories.json">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>

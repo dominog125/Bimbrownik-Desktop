@@ -7,6 +7,13 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Resources/Strings.pl.xaml"/>
                 <ResourceDictionary Source="Resources/Strings.en.xaml"/>
+
+                <ResourceDictionary Source="Styles/Colors.xaml"/>
+                <ResourceDictionary Source="Styles/DefaultStyles.xaml"/>
+                <ResourceDictionary Source="Styles/WindowStyle.xaml"/>
+                <ResourceDictionary Source="Styles/Buttons/MenuButtonStyle.xaml"/>
+                <ResourceDictionary Source="Styles/Buttons/RecipeIconButton.xaml"/>
+                <ResourceDictionary Source="Styles/Texts/RecipeItemTextStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

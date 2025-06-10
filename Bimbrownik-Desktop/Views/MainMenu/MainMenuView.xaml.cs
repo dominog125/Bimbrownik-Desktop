@@ -6,31 +6,39 @@ using Bimbrownik_Desktop.Views.Notifications;
 using Bimbrownik_Desktop.Views.Recipes;
 using Bimbrownik_Desktop.Views.Statistics;
 
-namespace Bimbrownik_Desktop.Views.MainMenu;
-
-public partial class MainMenuView : UserControl
+namespace Bimbrownik_Desktop.Views.MainMenu
 {
-    public MainMenuView() => InitializeComponent();
+    public partial class MainMenuView : UserControl
+    {
+        public MainMenuView()
+        {
+            InitializeComponent();
+        }
 
-    private void Recipes_Click(object sender, RoutedEventArgs e)
-    {
-        NavigationService.Instance.NavigateTo(new RecipesView());
-    }
-    private void Categories_Click(object sender, RoutedEventArgs e)
-    {
-        NavigationService.Instance.NavigateTo(new CategoriesView());
-    }
-    private void Notifications_Click(object sender, RoutedEventArgs e)
-    {
-        NavigationService.Instance.NavigateTo(new NotificationsView());
-    }
-    private void Statistics_Click(object sender, RoutedEventArgs e)
-    {
-        NavigationService.Instance.NavigateTo(new StatisticsView());
-    }
+        private void Recipes_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Instance.NavigateTo(new RecipesView());
+        }
 
-    private void Logout_Click(object sender, RoutedEventArgs e)
-    {
-        NavigationService.Instance.Logout(this);
+        private void Categories_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Instance.NavigateTo(new CategoriesView());
+        }
+
+        private void Notifications_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Instance.NavigateTo(new NotificationsView());
+        }
+
+        private void Statistics_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Instance.NavigateTo(new StatisticsView());
+        }
+
+        private void Logout_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Instance.Logout(this);
+        }
+
     }
 }
