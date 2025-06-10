@@ -9,6 +9,7 @@ namespace Bimbrownik_Desktop.Views.Main
         public MainWindow()
         {
             InitializeComponent();
+
             NavigationService.Instance.Initialize(ContentArea);
             NavigationService.Instance.NavigateTo(new MainMenuView());
         }

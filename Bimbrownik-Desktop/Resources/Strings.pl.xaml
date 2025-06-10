@@ -5,6 +5,7 @@
   
     <sys:String x:Key="LoginTitle">Logowanie</sys:String>
     <sys:String x:Key="Username">Użytkownik</sys:String>
+    <sys:String x:Key="Email">Email</sys:String>
     <sys:String x:Key="Password">Hasło</sys:String>
     <sys:String x:Key="LoginButton">Zaloguj</sys:String>
     

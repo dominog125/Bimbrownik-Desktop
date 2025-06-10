@@ -15,16 +15,17 @@
                     HorizontalAlignment="Center"
                     Width="300">
 
-            <TextBlock Text="{DynamicResource Username}" Margin="0,0,0,4" Foreground="{StaticResource TextWhite}"/>
-            <TextBox x:Name="UsernameBox" Height="30" Margin="0,0,0,12"/>
+            <TextBlock Text="{DynamicResource Email}" Margin="0,0,0,4" Foreground="{StaticResource TextWhite}"/>
+            <TextBox Height="30" Margin="0,0,0,12"
+                     Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" />
 
             <TextBlock Text="{DynamicResource Password}" Margin="0,0,0,4" Foreground="{StaticResource TextWhite}"/>
-            <PasswordBox x:Name="PasswordBox" Height="30" Margin="0,0,0,20"/>
+            <PasswordBox x:Name="PasswordBox" Height="30" Margin="0,0,0,20" PasswordChanged="PasswordBox_PasswordChanged"/>
 
             <Button Content="{DynamicResource LoginButton}"
                     Width="160" Height="38"
                     HorizontalAlignment="Center"
-                    Click="LoginButton_Click"/>
+                    Command="{Binding LoginCommand}"/>
         </StackPanel>
     </DockPanel>
 </Window>

@@ -1,32 +1,43 @@
 ﻿using System.Windows;
-using Bimbrownik_Desktop.Services;
+using Bimbrownik_Desktop.ViewModels;
 using Bimbrownik_Desktop.Views.Main;
+using Bimbrownik_Desktop.Services.Auth.Dtos;
+using System.Windows.Controls;
 
-namespace Bimbrownik_Desktop.Views.Login
+namespace Bimbrownik_Desktop.Views.Login;
+
+public partial class LoginWindow : Window
 {
-    public partial class LoginWindow : Window
+    private readonly LoginViewModel viewModel;
+
+    public LoginWindow(LoginViewModel viewModel)
     {
-        private readonly FakeAuthenticationService _auth = new();
+        InitializeComponent();
+        this.viewModel = viewModel;
+        DataContext = viewModel;
 
-        public LoginWindow()
-        {
-            InitializeComponent();
-        }
+        PasswordBox.PasswordChanged += (_, _) => viewModel.Password = PasswordBox.Password;
 
-        private void LoginButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (_auth.Login(UsernameBox.Text, PasswordBox.Password))
-            {
-                var mainWindow = new MainWindow();
-                mainWindow.Show();
+        viewModel.LoginSucceeded += OnLoginSucceeded;
+        viewModel.LoginFailed += ShowLoginFailedMessage;
+    }
+    private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+    {
+        if (DataContext is LoginViewModel vm)
+            vm.Password = ((PasswordBox)sender).Password;
+    }
 
-                Application.Current.MainWindow = mainWindow;
-                this.Close();
-            }
-            else
-            {
-                MessageBox.Show("Błędne dane logowania!");
-            }
-        }
+    private void OnLoginSucceeded(LoginResult result)
+    {
+        var mainWindow = new MainWindow();
+        mainWindow.Show();
+
+        Application.Current.MainWindow = mainWindow;
+        this.Close();
+    }
+
+    private void ShowLoginFailedMessage(string message)
+    {
+        MessageBox.Show(message, "Logowanie nie powiodło się", MessageBoxButton.OK, MessageBoxImage.Warning);
     }
 }

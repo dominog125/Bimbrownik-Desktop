@@ -38,7 +38,7 @@ public class ResourceLanguageService : LanguageService
         Application.Current.Resources.MergedDictionaries.Add(dict);
     }
 
-    private string GetDictionaryPath(LanguageCode language)
+    internal string GetDictionaryPath(LanguageCode language)
     {
         return language == LanguageCode.Polish
             ? "Resources/Strings.pl.xaml"

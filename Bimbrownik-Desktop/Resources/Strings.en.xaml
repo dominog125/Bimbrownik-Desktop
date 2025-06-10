@@ -4,9 +4,10 @@
 
     <sys:String x:Key="LoginTitle">Login</sys:String>
     <sys:String x:Key="Username">Username</sys:String>
+    <sys:String x:Key="Email">Email</sys:String>
     <sys:String x:Key="Password">Password</sys:String>
     <sys:String x:Key="LoginButton">Login</sys:String>
-    
+
 
     <sys:String x:Key="MainMenuTitle">Main Menu</sys:String>
     <sys:String x:Key="Recipes">Recipes</sys:String>
