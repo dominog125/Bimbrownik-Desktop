@@ -1,75 +1,100 @@
-﻿using System.IO;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Text.Json;
+using System.Threading.Tasks;
 using System.Windows;
-using Bimbrownik_Desktop.Models;
+using Bimbrownik_Desktop.Services.Auth;
+using Bimbrownik_Desktop.Services.Data.Dtos;
+using Bimbrownik_Desktop.Utilities;
 
-namespace Bimbrownik_Desktop.Services
+namespace Bimbrownik_Desktop.Services;
+
+public class CategoryService
 {
-    public class CategoryService
+    private static readonly string OfflineFolder =
+        Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data", "Offline");
+
+    private static readonly string CategoryFilePath =
+        Path.Combine(OfflineFolder, "categories.json");
+
+    private readonly AuthenticationApiClient _api;
+
+    public CategoryService(AuthenticationApiClient api)
     {
-        private static readonly string OfflineFolder =
-            Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data", "Offline");
+        _api = api;
 
-        private static readonly string CategoryFilePath =
-            Path.Combine(OfflineFolder, "categories.json");
+        if (!Directory.Exists(OfflineFolder))
+            Directory.CreateDirectory(OfflineFolder);
 
-        public CategoryService()
+        if (!File.Exists(CategoryFilePath))
+            File.WriteAllText(CategoryFilePath, "[]");
+    }
+
+    public async Task<List<CategoryDto>> LoadCategoriesAsync()
+    {
+        if (NetworkHelper.IsInternetAvailable())
         {
-            if (!Directory.Exists(OfflineFolder))
-                Directory.CreateDirectory(OfflineFolder);
-
-            if (!File.Exists(CategoryFilePath))
-                File.WriteAllText(CategoryFilePath, "[]");
-        }
-
-        public List<DrinkCategory> GetAllCategories()
-        {
-            if (!File.Exists(CategoryFilePath))
-                return new List<DrinkCategory>();
-
             try
             {
-                var json = File.ReadAllText(CategoryFilePath);
-                return JsonSerializer.Deserialize<List<DrinkCategory>>(json) ?? new List<DrinkCategory>();
+                var categories = await _api.GetCategoriesAsync();
+                SaveAllCategories(categories);
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Błąd podczas wczytywania kategorii: " + ex.Message, "Błąd JSON");
-                return new List<DrinkCategory>();
+            catch
+            { 
             }
         }
 
-        public void SaveAllCategories(List<DrinkCategory> categories)
-        {
-            var json = JsonSerializer.Serialize(categories, new JsonSerializerOptions
-            {
-                WriteIndented = true
-            });
+        return LoadCategoriesOffline();
+    }
 
-            File.WriteAllText(CategoryFilePath, json, Encoding.UTF8);
+    public List<CategoryDto> LoadCategoriesOffline()
+    {
+        if (!File.Exists(CategoryFilePath))
+            return new List<CategoryDto>();
+
+        try
+        {
+            var json = File.ReadAllText(CategoryFilePath);
+            return JsonSerializer.Deserialize<List<CategoryDto>>(json) ?? new List<CategoryDto>();
         }
-
-        public void AddCategory(string name)
+        catch (Exception ex)
         {
-            if (string.IsNullOrWhiteSpace(name))
-                return;
+            MessageBox.Show("Błąd podczas wczytywania kategorii: " + ex.Message, "Błąd JSON");
+            return new List<CategoryDto>();
+        }
+    }
 
-            var all = GetAllCategories();
+    public void SaveAllCategories(IEnumerable<CategoryDto> categories)
+    {
+        var json = JsonSerializer.Serialize(categories, new JsonSerializerOptions
+        {
+            WriteIndented = true
+        });
 
-            if (all.Exists(c => c.Name.Equals(name.Trim(), StringComparison.OrdinalIgnoreCase)))
+        File.WriteAllText(CategoryFilePath, json, Encoding.UTF8);
+    }
+
+    public async Task AddCategoryAsync(string name)
+    {
+        if (string.IsNullOrWhiteSpace(name)) return;
+
+        if (NetworkHelper.IsInternetAvailable())
+        {
+            await _api.AddCategoryAsync(name);
+        }
+        else
+        {
+            var list = LoadCategoriesOffline();
+            if (list.Any(c => string.Equals(c.Name, name, StringComparison.OrdinalIgnoreCase)))
             {
                 MessageBox.Show("Taka kategoria już istnieje.", "Błąd");
                 return;
             }
 
-            all.Add(new DrinkCategory
-            {
-                Id = all.Count + 1,
-                Name = name.Trim()
-            });
-
-            SaveAllCategories(all);
+            list.Add(new CategoryDto(Guid.NewGuid(), name));
+            SaveAllCategories(list);
         }
     }
 }

@@ -7,6 +7,7 @@ using Bimbrownik_Desktop.Services;
 using Bimbrownik_Desktop.Services.Auth;
 using Bimbrownik_Desktop.Services.Auth.Dtos;
 using Bimbrownik_Desktop.Services.Auth.Session;
+using Bimbrownik_Desktop.Services.Offline;
 
 namespace Bimbrownik_Desktop.ViewModels;
 
@@ -14,11 +15,13 @@ public class LoginViewModel : INotifyPropertyChanged
 {
     private readonly AuthenticationApiClient _auth;
     private readonly TokenStorage tokenStorage;
+    private readonly OfflineStorage? offlineStorage;
 
-    public LoginViewModel(AuthenticationApiClient auth, TokenStorage tokenStorage)
+    public LoginViewModel(AuthenticationApiClient auth, TokenStorage tokenStorage, OfflineStorage offlineStorage)
     {
         _auth = auth;
         this.tokenStorage = tokenStorage;
+        this.offlineStorage = offlineStorage;
         loginCommand = new AsyncRelayCommand(LoginAsync, CanLogin);
     }
 
@@ -45,13 +48,20 @@ public class LoginViewModel : INotifyPropertyChanged
     private bool CanLogin() =>
         !string.IsNullOrWhiteSpace(Email) && !string.IsNullOrWhiteSpace(Password);
 
-    internal async Task LoginAsync()
+    private async Task LoginAsync()
     {
         try
         {
             var result = await _auth.LoginAsync(new LoginRequestDto(Email, Password));
 
-            tokenStorage.SaveToken(result.Token);
+            if (offlineStorage is not null)
+            {
+                var recipes = await _auth.GetRecipesAsync();
+                var categories = await _auth.GetCategoriesAsync();
+                var statistics = await _auth.GetStatisticsAsync();
+
+                await offlineStorage.SaveAllAsync(recipes, categories, statistics);
+            }
 
             LoginSucceeded?.Invoke(result);
         }

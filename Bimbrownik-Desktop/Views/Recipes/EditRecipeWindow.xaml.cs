@@ -1,5 +1,7 @@
 ﻿using System.Windows;
 using Bimbrownik_Desktop.Models;
+using Bimbrownik_Desktop.Services;
+using Bimbrownik_Desktop.Services.Auth.Session;
 
 namespace Bimbrownik_Desktop.Views.Recipes;
 
@@ -17,21 +19,24 @@ public partial class EditRecipeWindow : Window
             Name = recipe.Name,
             Ingredients = recipe.Ingredients,
             Instructions = recipe.Instructions,
-            CreatedAt = recipe.CreatedAt,
+            Author = recipe.Author,
+            AlcoholCategoryId = recipe.AlcoholCategoryId,
+            AlcoholCategoryName = recipe.AlcoholCategoryName,
             IsHighlighted = recipe.IsHighlighted
         };
 
-        NameBox.Text = Recipe.Name;
-        IngredientsBox.Text = Recipe.Ingredients;
+        TitleBox.Text = Recipe.Name;
+        NameBox.Text = Recipe.Ingredients;
         InstructionsBox.Text = Recipe.Instructions;
         HighlightCheck.IsChecked = Recipe.IsHighlighted;
     }
 
     private void Save_Click(object sender, RoutedEventArgs e)
     {
-        Recipe.Name = NameBox.Text;
-        Recipe.Ingredients = IngredientsBox.Text;
+        Recipe.Name = TitleBox.Text;
+        Recipe.Ingredients = NameBox.Text;
         Recipe.Instructions = InstructionsBox.Text;
+        Recipe.Author = NavigationService.Instance.Resolve<TokenStorage>().CurrentUser?.Username;
         Recipe.IsHighlighted = HighlightCheck.IsChecked == true;
         DialogResult = true;
     }

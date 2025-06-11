@@ -2,25 +2,32 @@
 using System.Windows.Controls;
 using Bimbrownik_Desktop.Models;
 using Bimbrownik_Desktop.Services;
+using Bimbrownik_Desktop.Services.Auth;
+using Bimbrownik_Desktop.Services.Auth.Session;
 using Bimbrownik_Desktop.ViewModels.Recipes;
 
 namespace Bimbrownik_Desktop.Views.Recipes
 {
     public partial class RecipesView : UserControl
     {
-        private readonly RecipeService _service = new();
+        private readonly RecipeService _service;
 
-        public RecipesView()
+        public RecipesView(RecipeService service)
         {
             InitializeComponent();
+            _service = service;
             LoadRecipes();
         }
 
-        private void LoadRecipes()
+        private async Task LoadRecipes()
         {
             RecipeList.Children.Clear();
 
-            var recipes = _service.LoadRecipes();
+            var recipes = await _service.LoadRecipesAsync();
+            foreach (var r in recipes)
+            {
+                Console.WriteLine($"[VM DEBUG] {r.Name} - {r.Instructions} - {r.Author}");
+            }
             foreach (var recipe in recipes)
             {
                 var item = new RecipeItemView
@@ -36,15 +43,14 @@ namespace Bimbrownik_Desktop.Views.Recipes
             }
         }
 
-        private void AddRecipe_Click(object sender, RoutedEventArgs e)
+        private async void AddRecipe_Click(object sender, RoutedEventArgs e)
         {
             var newRecipe = new Recipe
             {
-                Id = Guid.NewGuid().GetHashCode(),
+                Id = Guid.NewGuid(),
                 Name = "",
-                Ingredients = "",
                 Instructions = "",
-                CreatedAt = DateTime.Now,
+                Author = NavigationService.Instance.Resolve<TokenStorage>().CurrentUser?.Username,
                 IsHighlighted = false
             };
 
@@ -52,49 +58,32 @@ namespace Bimbrownik_Desktop.Views.Recipes
 
             if (dialog.ShowDialog() == true)
             {
-                var all = _service.LoadRecipes();
-                all.Add(dialog.Recipe);
-                _service.SaveAllRecipes(all);
-                LoadRecipes();
+                await _service.AddRecipeAsync(dialog.Recipe);
+                await LoadRecipes();
             }
         }
 
-        private void DeleteRecipe(object? sender, Recipe recipe)
+        private async void DeleteRecipe(object? sender, Recipe recipe)
         {
-            var all = _service.LoadRecipes();
-            all.RemoveAll(r => r.Id == recipe.Id);
-            _service.SaveAllRecipes(all);
-            LoadRecipes();
+            await _service.DeleteRecipeAsync(recipe.Id);
+            await LoadRecipes();
         }
 
-        private void EditRecipe(object? sender, Recipe recipe)
+        private async void EditRecipe(object? sender, Recipe recipe)
         {
             var dialog = new EditRecipeWindow(recipe);
             if (dialog.ShowDialog() == true)
             {
-                var updated = dialog.Recipe;
-                var all = _service.LoadRecipes();
-                var index = all.FindIndex(r => r.Id == updated.Id);
-
-                if (index >= 0)
-                {
-                    all[index] = updated;
-                    _service.SaveAllRecipes(all);
-                    LoadRecipes();
-                }
+                await _service.UpdateRecipeAsync(dialog.Recipe);
+                await LoadRecipes();
             }
         }
 
-        private void ToggleHighlight(object? sender, Recipe recipe)
+        private async void ToggleHighlight(object? sender, Recipe recipe)
         {
-            var all = _service.LoadRecipes();
-            var found = all.Find(r => r.Id == recipe.Id);
-            if (found != null)
-            {
-                found.IsHighlighted = !found.IsHighlighted;
-                _service.SaveAllRecipes(all);
-                LoadRecipes();
-            }
+            recipe.IsHighlighted = !recipe.IsHighlighted;
+            await _service.UpdateRecipeAsync(recipe);
+            await LoadRecipes();
         }
     }
 }

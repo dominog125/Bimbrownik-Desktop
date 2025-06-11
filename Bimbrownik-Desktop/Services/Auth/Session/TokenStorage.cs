@@ -1,23 +1,25 @@
-﻿namespace Bimbrownik_Desktop.Services.Auth.Session;
+﻿using Bimbrownik_Desktop.Services.Auth.Dtos;
+
+namespace Bimbrownik_Desktop.Services.Auth.Session;
 
 public class TokenStorage
 {
-    private string? token;
+    private string? _token;
+    private LoginResult? _currentUser;
 
-    public void SaveToken(string newToken)
-    {
-        token = newToken;
-    }
+    public string? Token => _token;
+    public LoginResult? CurrentUser => _currentUser;
+    public bool IsAuthenticated => !string.IsNullOrWhiteSpace(_token);
 
-    public string? GetToken()
+    public void Save(string token, LoginResult user)
     {
-        return token;
+        _token = token;
+        _currentUser = user;
     }
 
     public void ClearToken()
     {
-        token = null;
+        _token = null;
+        _currentUser = null;
     }
-
-    public bool IsAuthenticated => !string.IsNullOrWhiteSpace(token);
 }

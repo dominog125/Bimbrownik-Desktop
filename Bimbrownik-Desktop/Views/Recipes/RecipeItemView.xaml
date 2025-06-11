@@ -14,7 +14,7 @@
                 <TextBlock Text="{Binding Name}" Style="{StaticResource RecipeItemTextStyle}" />
                 <TextBlock Text="{Binding Ingredients}" Style="{StaticResource RecipeItemTextStyle}" FontWeight="SemiBold"/>
                 <TextBlock Text="{Binding Instructions}" Style="{StaticResource RecipeItemTextStyle}" TextWrapping="Wrap"/>
-                <TextBlock Text="{Binding CreatedAt, StringFormat=yyyy-MM-dd HH:mm}" Style="{StaticResource RecipeItemTextStyle}" FontWeight="Bold"/>
+                <TextBlock Text="{Binding Author}" Style="{StaticResource RecipeItemTextStyle}" FontStyle="Italic"/>
             </StackPanel>
 
             <StackPanel Grid.Column="1"

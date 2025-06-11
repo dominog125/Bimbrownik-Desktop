@@ -24,6 +24,22 @@ namespace Bimbrownik_Desktop.Services
             _serviceProvider = serviceProvider;
         }
 
+        public T Resolve<T>() where T : class
+        {
+            if (_serviceProvider == null)
+                throw new InvalidOperationException("ServiceProvider is not initialized.");
+
+            return _serviceProvider.GetRequiredService<T>();
+        }
+        public void NavigateTo<T>() where T : UserControl
+        {
+            if (_serviceProvider == null)
+                throw new InvalidOperationException("NavigationService is not initialized with ServiceProvider.");
+
+            var view = _serviceProvider.GetRequiredService<T>();
+            _contentArea.Content = view;
+        }
+
         public void NavigateTo(UserControl view)
         {
             _contentArea.Content = view;

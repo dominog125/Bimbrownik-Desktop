@@ -7,7 +7,6 @@
 
     <DockPanel Background="{StaticResource DarkBackground}" Margin="20">
 
-
         <StackPanel Orientation="Horizontal"
                     DockPanel.Dock="Bottom"
                     HorizontalAlignment="Right"
@@ -21,10 +20,8 @@
                     Click="Cancel_Click"/>
         </StackPanel>
 
-
         <Border Background="{StaticResource DialogBackground}" Padding="10" CornerRadius="6">
             <StackPanel>
-
 
                 <StackPanel Margin="0,0,0,10">
                     <TextBlock Text="{DynamicResource Highlighted}"
@@ -35,23 +32,20 @@
                               Foreground="{StaticResource TextWhite}"/>
                 </StackPanel>
 
-
                 <StackPanel Margin="0,0,0,10">
                     <TextBlock Text="{DynamicResource RecipeName}"
                                Foreground="{StaticResource TextWhite}"
                                FontWeight="Bold"
                                Margin="0,0,0,4"/>
-                    <TextBox x:Name="NameBox" Height="30"/>
+                    <TextBox x:Name="TitleBox" Height="30"/>
                 </StackPanel>
-
 
                 <StackPanel Margin="0,0,0,10">
                     <TextBlock Text="{DynamicResource Ingredients}"
                                FontWeight="Bold"
                                Foreground="{StaticResource TextWhite}"/>
-                    <TextBox x:Name="IngredientsBox" Height="30"/>
+                    <TextBox x:Name="NameBox" Height="30"/>
                 </StackPanel>
-
 
                 <StackPanel Margin="0,0,0,10">
                     <TextBlock Text="{DynamicResource Instructions}"

@@ -1,52 +1,24 @@
 ﻿<UserControl x:Class="Bimbrownik_Desktop.Views.Statistics.StatisticsView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:layout="clr-namespace:Bimbrownik_Desktop.Views.Layouts"
-             xmlns:controls="clr-namespace:Bimbrownik_Desktop.Controls">
+             xmlns:layout="clr-namespace:Bimbrownik_Desktop.Views.Layouts">
 
     <DockPanel Background="{StaticResource DarkBackground}">
-
         <layout:SectionHeader HeaderText="{DynamicResource StatisticsTitle}" DockPanel.Dock="Top"/>
-
         <layout:BackToMenuArrow DockPanel.Dock="Top"/>
 
-        <ScrollViewer Margin="20" VerticalScrollBarVisibility="Auto">
-            <StackPanel>
+        <StackPanel Margin="20">
+            <TextBlock Text="{DynamicResource TotalRecipes}" FontWeight="Bold" Foreground="{StaticResource TextWhite}"/>
+            <TextBlock x:Name="TotalRecipesText" Margin="0,0,0,10" Foreground="{StaticResource TextWhite}"/>
 
-                <TextBlock Text="{DynamicResource TotalRecipes}" 
-                           FontWeight="Bold" 
-                           Foreground="{StaticResource TextWhite}"/>
-                <TextBlock x:Name="TotalRecipesText" 
-                           Margin="0,0,0,10" 
-                           Foreground="{StaticResource TextWhite}"/>
+            <TextBlock Text="{DynamicResource TotalUsers}" FontWeight="Bold" Foreground="{StaticResource TextWhite}"/>
+            <TextBlock x:Name="TotalUsersText" Margin="0,0,0,10" Foreground="{StaticResource TextWhite}"/>
 
-                <TextBlock Text="{DynamicResource TotalCategories}" 
-                           FontWeight="Bold" 
-                           Foreground="{StaticResource TextWhite}"/>
-                <TextBlock x:Name="TotalCategoriesText" 
-                           Margin="0,0,0,10" 
-                           Foreground="{StaticResource TextWhite}"/>
+            <TextBlock Text="{DynamicResource TotalComments}" FontWeight="Bold" Foreground="{StaticResource TextWhite}"/>
+            <TextBlock x:Name="TotalCommentsText" Margin="0,0,0,10" Foreground="{StaticResource TextWhite}"/>
 
-                <TextBlock Text="{DynamicResource RecipesViewedToday}" 
-                           FontWeight="Bold" 
-                           Foreground="{StaticResource TextWhite}"/>
-                <TextBlock x:Name="ViewedTodayText" 
-                           Margin="0,0,0,10" 
-                           Foreground="{StaticResource TextWhite}"/>
-
-                <TextBlock Text="{DynamicResource LastViewedRecipe}" 
-                           FontWeight="Bold" 
-                           Foreground="{StaticResource TextWhite}"/>
-                <TextBlock x:Name="LastViewedText" 
-                           Margin="0,0,0,10" 
-                           Foreground="{StaticResource TextWhite}"/>
-
-                <TextBlock Text="{DynamicResource TopViewedRecipes}" 
-                           FontWeight="Bold" 
-                           Foreground="{StaticResource TextWhite}"/>
-                <StackPanel x:Name="TopViewedList" />
-            </StackPanel>
-        </ScrollViewer>
-
+            <TextBlock Text="{DynamicResource TotalCategories}" FontWeight="Bold" Foreground="{StaticResource TextWhite}"/>
+            <TextBlock x:Name="TotalCategoriesText" Margin="0,0,0,10" Foreground="{StaticResource TextWhite}"/>
+        </StackPanel>
     </DockPanel>
 </UserControl>

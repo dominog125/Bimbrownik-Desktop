@@ -1,21 +1,21 @@
 ﻿using Bimbrownik_Desktop.Models;
 
-namespace Bimbrownik_Desktop.ViewModels.Recipes
+namespace Bimbrownik_Desktop.ViewModels.Recipes;
+
+public class RecipeItemViewModel
 {
-    public class RecipeItemViewModel
+    private readonly Recipe _recipe;
+
+    public RecipeItemViewModel(Recipe recipe)
     {
-        public Recipe Recipe { get; }
-
-        public string Name => Recipe.Name;
-        public string Ingredients => Recipe.Ingredients;
-        public string Instructions => Recipe.Instructions;
-        public DateTime CreatedAt => Recipe.CreatedAt;
-        public bool IsHighlighted => Recipe.IsHighlighted;
-        public string StarIcon => Recipe.IsHighlighted ? "⭐" : "☆";
-
-        public RecipeItemViewModel(Recipe recipe)
-        {
-            Recipe = recipe;
-        }
+        _recipe = recipe;
     }
+
+    public Recipe Recipe => _recipe;
+
+    public string Name => _recipe.Name;
+    public string Ingredients => _recipe.Ingredients;
+    public string Instructions => _recipe.Instructions ?? "";
+    public string? Author => _recipe.Author;
+    public string StarIcon => _recipe.IsHighlighted ? "⭐" : "☆";
 }

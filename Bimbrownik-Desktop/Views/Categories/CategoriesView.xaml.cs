@@ -1,46 +1,50 @@
-﻿using System.Windows;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
-using Bimbrownik_Desktop.Models;
 using Bimbrownik_Desktop.Services;
+using Bimbrownik_Desktop.Services.Data.Dtos;
 
-namespace Bimbrownik_Desktop.Views.Categories
+namespace Bimbrownik_Desktop.Views.Categories;
+
+public partial class CategoriesView : UserControl
 {
-    public partial class CategoriesView : UserControl
+    private readonly CategoryService _service;
+
+    public CategoriesView()
     {
-        private readonly CategoryService _service = new();
+        InitializeComponent();
 
-        public CategoriesView()
+        _service = NavigationService.Instance.Resolve<CategoryService>();
+
+        Loaded += async (_, _) => await LoadCategoriesAsync();
+    }
+
+    private async Task LoadCategoriesAsync()
+    {
+        CategoryList.Children.Clear();
+
+        List<CategoryDto> categories = await _service.LoadCategoriesAsync();
+
+        foreach (var category in categories)
         {
-            InitializeComponent();
-            LoadCategories();
-        }
-
-        private void LoadCategories()
-        {
-            CategoryList.Children.Clear();
-
-            List<DrinkCategory> categories = _service.GetAllCategories();
-            foreach (var category in categories)
+            var block = new TextBlock
             {
-                var block = new TextBlock
-                {
-                    Text = category.Name,
-                    FontSize = 16,
-                    Margin = new Thickness(0, 0, 0, 10)
-                };
-                CategoryList.Children.Add(block);
-            }
+                Text = category.Name,
+                FontSize = 16,
+                Margin = new Thickness(0, 0, 0, 10)
+            };
+            CategoryList.Children.Add(block);
         }
+    }
 
-        private void AddCategory_Click(object sender, RoutedEventArgs e)
+    private async void AddCategory_Click(object sender, RoutedEventArgs e)
+    {
+        var dialog = new AddCategoryWindow();
+        if (dialog.ShowDialog() == true && !string.IsNullOrWhiteSpace(dialog.CategoryName))
         {
-            var dialog = new AddCategoryWindow();
-            if (dialog.ShowDialog() == true)
-            {
-                string name = dialog.CategoryName;
-                _service.AddCategory(name);
-                LoadCategories();
-            }
+            await _service.AddCategoryAsync(dialog.CategoryName.Trim());
+            await LoadCategoriesAsync();
         }
     }
 }

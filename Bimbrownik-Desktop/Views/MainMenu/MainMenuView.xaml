@@ -11,21 +11,25 @@
                     Margin="0,40"
                     Width="300">
 
-            <Button Style="{StaticResource MenuButtonStyle}"
-                    Content="{DynamicResource Recipes}"
-                    Click="Recipes_Click"/>
-
-            <Button Style="{StaticResource MenuButtonStyle}"
-                    Content="{DynamicResource Categories}"
-                    Click="Categories_Click"/>
-
-            <Button Style="{StaticResource MenuButtonStyle}"
-                    Content="{DynamicResource Notifications}"
-                    Click="Notifications_Click"/>
-
-            <Button Style="{StaticResource MenuButtonStyle}"
-                    Content="{DynamicResource Statistics}"
-                    Click="Statistics_Click"/>
+            <Button Style="{StaticResource MenuButtonStyle}" 
+                    Content="{DynamicResource Recipes}" 
+                    Tag="Recipes" 
+                    Click="Navigate_Click"/>
+            
+            <Button Style="{StaticResource MenuButtonStyle}" 
+                    Content="{DynamicResource Categories}" 
+                    Tag="Categories" 
+                    Click="Navigate_Click"/>
+            
+            <Button Style="{StaticResource MenuButtonStyle}" 
+                    Content="{DynamicResource Notifications}" 
+                    Tag="Notifications" 
+                    Click="Navigate_Click"/>
+            
+            <Button Style="{StaticResource MenuButtonStyle}" 
+                    Content="{DynamicResource Statistics}" 
+                    Tag="Statistics" 
+                    Click="Navigate_Click"/>
 
             <Button Style="{StaticResource MenuButtonStyle}"
                     Content="{DynamicResource Logout}"

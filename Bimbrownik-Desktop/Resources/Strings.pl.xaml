@@ -43,10 +43,9 @@
     
     <sys:String x:Key="StatisticsTitle">Statystyki</sys:String>
     <sys:String x:Key="TotalRecipes">Liczba przepisów</sys:String>
+    <sys:String x:Key="TotalUsers">Liczba użytkowników</sys:String>
+    <sys:String x:Key="TotalComments">Liczba komentarzy</sys:String>
     <sys:String x:Key="TotalCategories">Liczba kategorii</sys:String>
-    <sys:String x:Key="RecipesViewedToday">Przepisy przeglądane dzisiaj</sys:String>
-    <sys:String x:Key="LastViewedRecipe">Ostatnio przeglądany przepis</sys:String>
-    <sys:String x:Key="TopViewedRecipes">Top 3 najczęściej oglądane przepisy</sys:String>
 
 
     <sys:String x:Key="Save">Zapisz</sys:String>

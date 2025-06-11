@@ -15,7 +15,8 @@ public partial class AddCategoryWindow : Window
     {
         if (string.IsNullOrWhiteSpace(CategoryName))
         {
-            MessageBox.Show("Nazwa kategorii nie może być pusta.");
+            MessageBox.Show("Nazwa kategorii nie może być pusta.",
+                            "Błąd", MessageBoxButton.OK, MessageBoxImage.Warning);
             return;
         }
 

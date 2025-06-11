@@ -1,66 +1,41 @@
 ﻿using System.Windows.Controls;
-using System.Windows;
 using Bimbrownik_Desktop.Services;
+using Bimbrownik_Desktop.Services.Auth;
+using Bimbrownik_Desktop.Services.Data.Dtos;
 
 namespace Bimbrownik_Desktop.Views.Statistics;
 
 public partial class StatisticsView : UserControl
 {
-    private readonly RecipeService _recipeService = new();
-    private readonly CategoryService _categoryService = new();
+    private readonly AuthenticationApiClient _apiClient;
 
     public StatisticsView()
     {
         InitializeComponent();
-        LoadStatistics();
+        _apiClient = NavigationService.Instance.Resolve<AuthenticationApiClient>();
+        Loaded += async (_, _) => await LoadStatisticsAsync();
     }
 
-    private void LoadStatistics()
+    private async Task LoadStatisticsAsync()
     {
-        var recipes = _recipeService.LoadRecipes();
-        var categories = _categoryService.GetAllCategories();
+        StatisticsDto stats;
 
-        TotalRecipesText.Text = recipes.Count.ToString();
-        TotalCategoriesText.Text = categories.Count.ToString();
-
-        var today = DateTime.Today;
-        var viewedToday = recipes.Count(r => r.LastViewedAt.HasValue && r.LastViewedAt.Value.Date == today);
-        ViewedTodayText.Text = viewedToday.ToString();
-
-        var lastViewed = recipes
-            .Where(r => r.LastViewedAt.HasValue)
-            .OrderByDescending(r => r.LastViewedAt)
-            .FirstOrDefault();
-
-        LastViewedText.Text = lastViewed != null
-            ? $"{lastViewed.Name} ({lastViewed.LastViewedAt:yyyy-MM-dd HH:mm})"
-            : "Brak danych";
-
-        var topViewed = recipes
-            .OrderByDescending(r => r.ViewCount)
-            .Take(3)
-            .ToList();
-
-        TopViewedList.Children.Clear();
-
-        if (topViewed.Count == 0)
+        try
         {
-            TopViewedList.Children.Add(new TextBlock
-            {
-                Text = "Brak danych",
-                Foreground = (System.Windows.Media.Brush)Application.Current.Resources["TextWhite"]
-            });
+            stats = await _apiClient.GetStatisticsAsync();
+        }
+        catch
+        {
+            TotalRecipesText.Text = "Błąd";
+            TotalUsersText.Text = "Błąd";
+            TotalCommentsText.Text = "Błąd";
+            TotalCategoriesText.Text = "Błąd";
             return;
         }
 
-        foreach (var recipe in topViewed)
-        {
-            TopViewedList.Children.Add(new TextBlock
-            {
-                Text = $"{recipe.Name} ({recipe.ViewCount} wyświetleń)",
-                Margin = new Thickness(0, 0, 0, 5),
-                Foreground = (System.Windows.Media.Brush)Application.Current.Resources["TextWhite"]
-            });
-        }
+        TotalRecipesText.Text = stats.TotalPosts.ToString();
+        TotalUsersText.Text = stats.TotalUsers.ToString();
+        TotalCommentsText.Text = stats.TotalComments.ToString();
+        TotalCategoriesText.Text = stats.TotalCategories.ToString();
     }
 }

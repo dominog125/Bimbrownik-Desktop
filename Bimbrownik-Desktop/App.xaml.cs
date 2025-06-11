@@ -4,8 +4,11 @@ using System.Windows;
 using Bimbrownik_Desktop.Services;
 using Bimbrownik_Desktop.Services.Auth;
 using Bimbrownik_Desktop.Services.Auth.Session;
+using Bimbrownik_Desktop.Services.Offline;
 using Bimbrownik_Desktop.ViewModels;
+using Bimbrownik_Desktop.Views.Categories;
 using Bimbrownik_Desktop.Views.Login;
+using Bimbrownik_Desktop.Views.Recipes;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Bimbrownik_Desktop
@@ -24,10 +27,16 @@ namespace Bimbrownik_Desktop
                 BaseAddress = new Uri("https://app-bimbrownik-eupl-dev-001-drdmbud9b2fvfqe8.canadacentral-01.azurewebsites.net")
             });
 
-            services.AddSingleton<AuthenticationApiClient, HttpAuthenticationApiClient>();
             services.AddSingleton<TokenStorage>();
+            services.AddSingleton<OfflineStorage, FileOfflineStorage>();
+            services.AddSingleton<AuthenticationApiClient, HttpAuthenticationApiClient>();
+            services.AddSingleton<RecipeService>();
+            services.AddSingleton<CategoryService>();
+
             services.AddTransient<LoginViewModel>();
             services.AddTransient<LoginWindow>();
+            services.AddTransient<RecipesView>();
+            services.AddTransient<CategoriesView>();
 
             serviceProvider = services.BuildServiceProvider();
 

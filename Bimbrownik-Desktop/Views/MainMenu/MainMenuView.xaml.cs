@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using Bimbrownik_Desktop;
 using Bimbrownik_Desktop.Services;
 using Bimbrownik_Desktop.Views.Categories;
 using Bimbrownik_Desktop.Views.Notifications;
@@ -15,24 +16,18 @@ namespace Bimbrownik_Desktop.Views.MainMenu
             InitializeComponent();
         }
 
-        private void Recipes_Click(object sender, RoutedEventArgs e)
+        private readonly Dictionary<string, UserControl> views = new()
         {
-            NavigationService.Instance.NavigateTo(new RecipesView());
-        }
+            { "Recipes", NavigationService.Instance.Resolve<RecipesView>() },
+            { "Categories", NavigationService.Instance.Resolve<CategoriesView>() },
+            { "Notifications", new NotificationsView() },
+            { "Statistics", new StatisticsView() }
+        };
 
-        private void Categories_Click(object sender, RoutedEventArgs e)
+        private void Navigate_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Instance.NavigateTo(new CategoriesView());
-        }
-
-        private void Notifications_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Instance.NavigateTo(new NotificationsView());
-        }
-
-        private void Statistics_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Instance.NavigateTo(new StatisticsView());
+            if (sender is Button btn && btn.Tag is string key && views.TryGetValue(key, out var view))
+                NavigationService.Instance.NavigateTo(view);
         }
 
         private void Logout_Click(object sender, RoutedEventArgs e)
